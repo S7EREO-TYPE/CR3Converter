@@ -22,6 +22,7 @@ dependencies {
 
 application {
     mainClassName = 'com.converter.CR3Converter'
+    applicationDefaultJvmArgs = ['-Djava.awt.headless=false']
 }
 
 jar {

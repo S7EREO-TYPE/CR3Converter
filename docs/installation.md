@@ -1,53 +1,68 @@
-# Installation Instructions for CR3Converter
+# Installation Guide - CR3Converter
 
-## Prerequisites
+## 📋 Prerequisites
 
-Before installing the CR3Converter application, ensure that you have the following prerequisites:
+- **Java 8+** - [Download OpenJDK](https://openjdk.java.net/) or [Oracle JDK](https://www.oracle.com/java/technologies/javase-downloads.html)
+- **LibRaw** - [Download LibRaw](https://www.libraw.org/download) for CR3 file processing
+- **Git** - For cloning the repository
 
-- **Java Development Kit (JDK)**: Make sure you have JDK 8 or higher installed on your machine. You can download it from the [Oracle website](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html) or use an open-source alternative like [OpenJDK](https://openjdk.java.net/).
+## 🚀 Quick Installation (Recommended)
 
-- **Gradle**: The project uses Gradle for building. You can download and install Gradle from the [Gradle website](https://gradle.org/install/).
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/S7EREO-TYPE/CR3Converter.git
+cd CR3Converter
+```
 
-- **LibRaw**: The application requires LibRaw for processing CR3 files. Download the latest version from the [LibRaw website](https://www.libraw.org/download).
+### Step 2: Build the Application
+```bash
+# For Java 17+ (bypasses Gradle compatibility issues)
+.\build-simple.bat
 
-## Installation Steps
+# For Java 8-16 (using Gradle)
+.\gradlew.bat build    # Windows
+./gradlew build        # Linux/macOS
+```
 
-1. **Clone the Repository**:
-   Open a terminal and clone the CR3Converter repository using the following command:
-   ```
-   git clone https://github.com/S7EREO-TYPE/CR3Converter.git
-   ```
+### Step 3: Run the Application
+```bash
+# Easiest method - Double-click or run:
+CR3Converter.bat
 
-2. **Navigate to the Project Directory**:
-   Change to the project directory:
-   ```
-   cd CR3Converter
-   ```
+# Alternative methods:
+.\CR3Converter.ps1                                    # PowerShell launcher
+java -jar build/libs/CR3Converter-all-1.0.0.jar     # Direct JAR
+```
 
-3. **Install Dependencies**:
-   Use Gradle to install the necessary dependencies. Run the following command:
-   ```
-   ./gradlew build
-   ```
+## ⚙️ LibRaw Configuration
 
-4. **Set Up LibRaw**:
-   - Extract the downloaded LibRaw package to a directory of your choice.
-   - Update the path in the `CR3Converter.java` file to point to the `dcraw_emu.exe` executable. This can be found in the `bin` directory of the extracted LibRaw package.
+1. Download and extract LibRaw
+2. Note the location of `dcraw_emu.exe`
+3. Update the path in `src/main/java/com/converter/CR3Converter.java`:
 
-5. **Run the Application**:
-   After building the project, you can run the application using the following command:
-   ```
-   ./gradlew run
-   ```
+```java
+// Update this path to your LibRaw installation
+private static final String LIBRAW_PATH = "C:\\path\\to\\libraw\\bin\\dcraw_emu.exe";
+```
 
-## Additional Configuration
+## 📂 File Structure After Installation
 
-- If you want to customize the application further, you can modify the source code located in the `src/main/java/com/converter/` directory.
+```
+CR3Converter/
+├── build/libs/CR3Converter-all-1.0.0.jar    # Executable JAR
+├── CR3Converter.bat                          # Windows launcher
+├── CR3Converter.ps1                          # PowerShell launcher
+├── build-simple.bat                          # Simple build script
+└── src/main/java/com/converter/              # Source code
+```
 
-- Ensure that the `lib` and `resources/icons` directories are populated with any necessary files or icons you wish to include in your project.
+## ❓ Troubleshooting
 
-## Troubleshooting
+### Java Version Issues
+- If using Java 17+, use `.\build-simple.bat`
+- Check version with `java -version`
 
-- If you encounter issues during installation or running the application, check the console output for error messages and ensure that all prerequisites are correctly installed.
-
-- For further assistance, refer to the `usage.md` file in the `docs` directory for detailed usage instructions.
+### LibRaw Setup
+- Ensure `dcraw_emu.exe` is accessible
+- Update path in `CR3Converter.java`
+- Rebuild after path changes

@@ -1,32 +1,141 @@
-# Usage Instructions for CR3Converter
+# Usage Guide - CR3Converter
 
-## Overview
-The CR3Converter application is a user-friendly tool designed to convert Canon Raw v3 (.cr3) files into high-quality JPEG images. This application supports bulk processing and offers various customization options for the conversion process.
+## 🚀 Quick Start
 
-## Features
-- **Bulk Conversion**: Select a folder containing multiple CR3 files and convert them all to JPEG format in one go.
-- **Recursive Scanning**: Optionally include subfolders in the search for CR3 files.
-- **Quality Control**: Adjust the JPEG quality using a slider, with a range from 50% to 100%.
-- **Brightness Adjustment**: Modify the brightness of the output JPEG images with a slider, allowing values from 50% to 300%.
-- **Logging**: View detailed logs of the conversion process, including success and failure messages.
+### 1. Launch the Application
+```bash
+# Double-click or run:
+CR3Converter.bat
 
-## Getting Started
-1. **Select Folder**: Click the "Select Folder" button to choose the directory containing your CR3 files. The application will scan the selected folder and its subfolders (if enabled) for CR3 files.
-2. **Adjust Settings**: Use the quality and brightness sliders to set your desired output parameters.
-3. **Start Conversion**: Once the files are detected, click the "Start Bulk Conversion" button to begin the conversion process. The progress will be displayed in the progress bar, along with logs in the text area.
+# Or use PowerShell:
+.\CR3Converter.ps1
+```
 
-## Conversion Process
-- The application will create JPEG files in the same directory as the original CR3 files.
-- If a JPEG file already exists for a CR3 file, the application will skip the conversion for that file and log a message.
-- The conversion process will utilize various methods to ensure the best quality output, including LibRaw and ImageIO.
+### 2. Basic Workflow
+1. **📁 Select Folder** - Choose folder containing CR3 files
+2. **⚙️ Adjust Settings** - Configure quality and brightness
+3. **▶️ Start Conversion** - Click "Start Bulk Conversion"
+4. **📊 Monitor Progress** - Watch progress bar and logs
 
-## Notes
-- Ensure that LibRaw is installed and correctly configured on your system, as it is required for the conversion of CR3 files.
-- The application is designed to preserve the original CR3 files during the conversion process.
+## 🎛️ Interface Overview
 
-## Troubleshooting
-- If you encounter issues with the conversion, check the logs for error messages that may indicate the cause of the problem.
-- Make sure that the selected folder contains valid CR3 files and that you have the necessary permissions to read and write files in that directory.
+### Main Controls
+- **Select Folder**: Choose source directory with CR3 files
+- **Quality Slider**: JPEG quality (50-100%)
+- **Brightness Slider**: Image brightness (50-300%)
+- **Recursive Checkbox**: Include subfolders
+- **Start/Stop Button**: Begin or halt conversion process
+
+### Information Display
+- **File Count**: Shows detected CR3 files
+- **Progress Bar**: Conversion progress indicator
+- **Log Area**: Detailed processing information
+
+## ⚙️ Settings & Options
+
+### Quality Settings
+- **Range**: 50% to 100%
+- **Recommended**: 85-95% for best balance
+- **Higher**: Better quality, larger file size
+- **Lower**: Smaller files, reduced quality
+
+### Brightness Control
+- **Range**: 50% to 300%
+- **Default**: 100% (no adjustment)
+- **Darker**: Below 100%
+- **Brighter**: Above 100%
+
+### Processing Options
+- **Recursive Scanning**: Process subfolders
+- **Automatic Skip**: Skip existing JPEG files
+- **Preserve Originals**: CR3 files remain untouched
+
+## 🔄 Conversion Process
+
+### File Processing Order
+1. **Scan Directory** - Locate all CR3 files
+2. **Check Existing** - Skip if JPEG already exists
+3. **Primary Method** - LibRaw conversion
+4. **Fallback Methods** - Alternative conversion approaches
+5. **Quality Adjustment** - Apply brightness/quality settings
+6. **Save JPEG** - Output to same directory as CR3
+
+### Output Location
+- JPEGs saved in same folder as source CR3 files
+- Naming: `original_name.jpg` (replaces .cr3 extension)
+- Existing files are automatically skipped
+
+## 📊 Monitoring & Logs
+
+### Progress Tracking
+- **File Counter**: "Processing X of Y files"
+- **Progress Bar**: Visual completion indicator
+- **Success Rate**: Conversion statistics
+
+### Log Messages
+- ✅ **Success**: "✓ Converted: filename.cr3"
+- ⏭️ **Skipped**: "⏭ Already exists: filename.jpg"
+- ❌ **Failed**: "✗ Failed: filename.cr3 - error details"
+
+## ❓ Troubleshooting
+
+### Common Issues
+
+**No CR3 Files Found**
+- Verify folder contains .cr3 files
+- Check "Recursive" option for subfolders
+- Ensure files have .cr3 extension
+
+**LibRaw Not Found**
+- Install LibRaw from [libraw.org](https://www.libraw.org/)
+- Update path in source code if needed
+- Check PATH environment variable
+
+**Conversion Failures**
+- Verify CR3 file integrity
+- Check disk space availability
+- Ensure write permissions in target folder
+
+**Java/Launch Issues**
+```bash
+# Check Java installation
+java -version
+
+# Test JAR directly
+java -jar build/libs/CR3Converter-all-1.0.0.jar
+
+# Check file permissions
+dir CR3Converter.bat
+```
+
+## 🎯 Best Practices
+
+### Performance Tips
+- Process smaller batches for faster feedback
+- Use SSD storage for better I/O performance
+- Close other applications during large conversions
+
+### Quality Guidelines
+- **Web/Social**: 70-80% quality
+- **Print/Archive**: 90-95% quality
+- **Professional**: 95-100% quality
+
+### File Management
+- Keep CR3 originals as master files
+- Organize output by date or project
+- Use consistent naming conventions
+
+## 🔧 Advanced Usage
+
+### Batch Processing
+- Select parent folder with multiple subfolders
+- Enable "Recursive" for deep folder scanning
+- Monitor logs for processing statistics
+
+### Custom LibRaw Configuration
+- Update LibRaw path in source code
+- Recompile after path changes
+- Test with sample files before batch processing
 
 ## Conclusion
 The CR3Converter application provides a powerful and efficient way to convert CR3 files to JPEG format, making it an essential tool for photographers and digital artists. Enjoy seamless conversion with customizable settings to suit your needs!
