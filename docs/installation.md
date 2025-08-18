@@ -15,7 +15,7 @@ Before installing the CR3Converter application, ensure that you have the followi
 1. **Clone the Repository**:
    Open a terminal and clone the CR3Converter repository using the following command:
    ```
-   git clone https://github.com/yourusername/CR3Converter.git
+   git clone https://github.com/S7EREO-TYPE/CR3Converter.git
    ```
 
 2. **Navigate to the Project Directory**:
@@ -27,7 +27,7 @@ Before installing the CR3Converter application, ensure that you have the followi
 3. **Install Dependencies**:
    Use Gradle to install the necessary dependencies. Run the following command:
    ```
-   gradle build
+   ./gradlew build
    ```
 
 4. **Set Up LibRaw**:
@@ -37,7 +37,7 @@ Before installing the CR3Converter application, ensure that you have the followi
 5. **Run the Application**:
    After building the project, you can run the application using the following command:
    ```
-   gradle run
+   ./gradlew run
    ```
 
 ## Additional Configuration

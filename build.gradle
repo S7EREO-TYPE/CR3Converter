@@ -1,21 +1,72 @@
 plugins {
     id 'java'
     id 'application'
+    id 'distribution'
 }
 
 group 'com.converter'
-version '1.0-SNAPSHOT'
+version '1.0.0'
+description 'Java desktop app for bulk converting Canon CR3 raw files to JPEG. Features adjustable quality/brightness, recursive folder scanning, progress tracking, and detailed logging.'
 
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    // Add any required dependencies here
+    // No external dependencies required for this project
+    // All required libraries are part of Java SE
 }
 
 application {
     mainClassName = 'com.converter.CR3Converter'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.converter.CR3Converter',
+            'Implementation-Title': 'CR3 to JPEG Converter',
+            'Implementation-Version': project.version
+        )
+    }
+}
+
+// Create a fat JAR with all dependencies
+task fatJar(type: Jar) {
+    archiveBaseName = project.name + '-all'
+    archiveVersion = project.version
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    
+    manifest {
+        attributes 'Main-Class': 'com.converter.CR3Converter'
+    }
+    
+    from { 
+        configurations.runtimeClasspath.collect { 
+            it.isDirectory() ? it : zipTree(it) 
+        } 
+    }
+    with jar
+}
+
+// Ensure fatJar runs when building
+build.dependsOn fatJar
+
+// Configure distribution
+distributions {
+    main {
+        contents {
+            from jar
+            from fatJar
+            into('docs') {
+                from 'docs'
+            }
+            into('resources') {
+                from 'resources'
+            }
+        }
+    }
 }

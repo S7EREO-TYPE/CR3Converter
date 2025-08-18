@@ -18,7 +18,7 @@ The CR3 to JPEG Converter is a Java-based Swing application designed to convert 
 ## Installation
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/CR3Converter.git
+   git clone https://github.com/S7EREO-TYPE/CR3Converter.git
    ```
 2. Navigate to the project directory:
    ```
@@ -26,14 +26,26 @@ The CR3 to JPEG Converter is a Java-based Swing application designed to convert 
    ```
 3. Ensure that LibRaw is installed and the path is correctly set in the `CR3Converter.java` file.
 4. Build the project using Gradle:
-   ```
+   ```bash
+   # On Linux/macOS:
    ./gradlew build
+   
+   # On Windows:
+   gradlew.bat build
    ```
 
 ## Usage
 1. Run the application:
-   ```
-   java -jar build/libs/CR3Converter.jar
+   ```bash
+   # Using the built JAR:
+   java -jar build/libs/CR3Converter-all-1.0.0.jar
+   
+   # Or using Gradle:
+   # Linux/macOS:
+   ./gradlew run
+   
+   # Windows:
+   gradlew.bat run
    ```
 2. Select the folder containing the CR3 files you wish to convert.
 3. Adjust the quality and brightness settings as desired.
