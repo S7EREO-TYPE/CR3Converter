@@ -8,8 +8,10 @@ group 'com.converter'
 version '1.0.0'
 description 'Java desktop app for bulk converting Canon CR3 raw files to JPEG. Features adjustable quality/brightness, recursive folder scanning, progress tracking, and detailed logging.'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 repositories {
     mavenCentral()
@@ -21,7 +23,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'com.converter.CR3Converter'
+    mainClass = 'com.converter.CR3Converter'
     applicationDefaultJvmArgs = ['-Djava.awt.headless=false']
 }
 

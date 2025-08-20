@@ -1,2 +1,5 @@
 Manifest-Version: 1.0
+Main-Class: com.converter.CR3Converter
+Implementation-Title: CR3 to JPEG Converter
+Implementation-Version: 1.0.0
 
