@@ -495,13 +495,9 @@ public class CR3Converter extends JFrame {
                                 log("    Found alternative output: " + f.getName());
                                 
                                 try {
-                                    BufferedImage image = null;
-                                    if (f.getName().toLowerCase().endsWith(".ppm")) {
-                                        image = readPPMFile(f);
-                                    } else {
-                                        image = ImageIO.read(f);
-                                    }
-                                    
+                                    BufferedImage image = f.getName().toLowerCase().endsWith(".ppm")
+                                        ? readPPMFile(f)
+                                        : ImageIO.read(f);
                                     if (image != null) {
                                         writeJPEGWithQuality(image, jpegFile, qualitySlider.getValue() / 100.0f);
                                         f.delete();
@@ -573,9 +569,8 @@ public class CR3Converter extends JFrame {
             try (BufferedReader stdoutReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                  BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
                 
-                String line;
-                while ((line = stdoutReader.readLine()) != null) { /* consume */ }
-                while ((line = errorReader.readLine()) != null) { /* consume */ }
+                while (stdoutReader.readLine() != null) { /* consume */ }
+                while (errorReader.readLine() != null) { /* consume */ }
             }
             
             int exitCode = process.waitFor();
